@@ -3,12 +3,15 @@ package builder
 import (
 	"unifriends-db-script/factories"
 	"unifriends-db-script/models"
+
+	"github.com/go-faker/faker/v4"
 )
 
 type Builder struct {
 	Major        models.Major
 	User         []models.User
 	Quiz         models.QuizTable
+	UserImages   []models.UsersImages
 	Questions    []models.QuestionTable
 	Options      []models.OptionTable
 	UserReponses []models.UserResponse
@@ -20,6 +23,18 @@ func newResponseBuilder() *Builder {
 
 func (b *Builder) createMajor() {
 	b.Major = factories.CreateMajor()
+}
+
+func (b *Builder) createUserImages() {
+	for _, user := range b.User {
+		userImage := models.UsersImages{
+			ImageUrl: faker.URL(),
+			UserID:   user.Id,
+		}
+
+		userImage.InsertUserImage()
+		b.UserImages = append(b.UserImages, userImage)
+	}
 }
 
 func (b *Builder) createUser() {

@@ -3,6 +3,7 @@ package builder
 type UserResponseBuilder interface {
 	createMajor()
 	createUser()
+	createUserImages()
 	createQuiz()
 	createQuestions()
 	createOptions()

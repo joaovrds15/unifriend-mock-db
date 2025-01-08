@@ -13,6 +13,7 @@ func NewDirector(b UserResponseBuilder) *Director {
 func (d *Director) BuildUserResponse() {
 	d.builder.createMajor()
 	d.builder.createUser()
+	d.builder.createUserImages()
 	d.builder.createQuiz()
 	d.builder.createQuestions()
 	d.builder.createOptions()
